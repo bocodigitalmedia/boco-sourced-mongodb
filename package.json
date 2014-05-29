@@ -1,6 +1,6 @@
 {
   "name": "boco-sourced-mongodb",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "MongoDB storage adapter for boco-sourced.",
   "homepage": "http://github.com/bocodigitalmedia/boco-sourced-mongodb",
   "main": "./package/index.js",
