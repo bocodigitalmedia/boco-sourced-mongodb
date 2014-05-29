@@ -1,0 +1,31 @@
+{
+  "name": "boco-sourced-mongodb",
+  "version": "0.0.0",
+  "description": "MongoDB storage adapter for boco-sourced.",
+  "homepage": "http://github.com/bocodigitalmedia/boco-sourced-mongodb",
+  "main": "./package/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/cake test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bocodigitalmedia/boco-sourced-mongodb"
+  },
+  "keywords": [
+    "boco",
+    "sourced",
+    "mongodb"
+  ],
+  "author": "Christian Bradley <christianbradley@gmail.com> (https://github.com/christianbradley)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bocodigitalmedia/boco-sourced-mongodb/issues"
+  },
+  "devDependencies": {
+    "coffee-script": "1.6.3",
+    "async": "~0.9.0"
+  },
+  "peerDependencies": {
+    "boco-sourced": "0.x"
+  }
+}

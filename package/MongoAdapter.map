@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "MongoAdapter.js",
+  "sourceRoot": "..",
+  "sources": [
+    "coffee/MongoAdapter.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,KAAA,MAAA;;CAAA,CAAA,CAAuB,GAAjB,CAAN;CACe,EAAA,CAAA,EAAA,gBAAC;;GAAS,KAAT;QAAD;CAAb,IAAa;;CAAb,CAE0B,CAAX,KAAA,CAAC,IAAhB;;CAFA,CAI8B,CAAf,KAAA,CAAC,CAAD,EAAA,CAAf;;CAJA;;CADF;CAAA"
+}
