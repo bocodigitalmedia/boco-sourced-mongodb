@@ -1,4 +1,5 @@
-exports.MongoAdapter = require './MongoAdapter'
+SourcedAdapter = exports
+SourcedAdapter.MongoAdapter = require './MongoAdapter'
 
-exports.configure = (config) ->
+SourcedAdapter.configure = (config) ->
   new exports.MongoAdapter config
