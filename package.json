@@ -1,6 +1,6 @@
 {
   "name": "boco-sourced-mongodb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "MongoDB storage adapter for boco-sourced.",
   "homepage": "http://github.com/bocodigitalmedia/boco-sourced-mongodb",
   "main": "./package/index.js",
@@ -23,9 +23,7 @@
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
-    "async": "~0.9.0",
-    "when": "~3.2.2",
-    "mongodb": "~1.4.5"
+    "async": "~0.9.0"
   },
   "peerDependencies": {
     "boco-sourced": "0.x"
