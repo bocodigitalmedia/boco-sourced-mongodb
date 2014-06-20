@@ -12,6 +12,15 @@ Install for [node] using [npm]:
 npm install boco-sourced-mongodb
 ```
 
+MongoDB Schema
+--------------------------------------------------------------------------------
+Before using the adapter, you'll want to modify the schema as follows:
+
+```js
+db.revisions.ensureIndex({ resourceType: 1, resourceId: 1, resourceVersion: 1 }, { unique: true })
+```
+
+
 Usage
 ================================================================================
 
@@ -23,11 +32,22 @@ We'll use the `assert` module to demonstrate behavior:
 
     assert = require 'assert'
 
+
 Configuration
 --------------------------------------------------------------------------------
 Let's create a configuration object for our adapter:
 
     config = {}
+
+### config.connectionString
+Use the MongoDB [connection string format] to specify a connection to the database.
+
+    config.connectionString = "mongodb://localhost/sourcedExamples"
+
+### config.revisionsCollectionName
+Specify the MongoDB collection name for revisions.
+
+    config.revisionsCollectionName = "revisions"
 
 
 Create an adapter instance
@@ -36,6 +56,7 @@ To create an instance of the adapter, pass in the `config` object to the module'
 
     adapter = MongoAdapter.configure config
 
+
 Configure boco-sourced with the adapter
 --------------------------------------------------------------------------------
 The adapter can now be used by [boco-sourced]:
@@ -43,31 +64,12 @@ The adapter can now be used by [boco-sourced]:
     Sourced = require 'boco-sourced'
     sourced = Sourced.createService storage: adapter
 
----
-
-API
-================================================================================
 
 
-Storing revisions
---------------------------------------------------------------------------------
-The adapter stores revisions to the database.
-
-    userId = '482755e0-2e72-470a-8a36-08a6171b5a5f'
-    revision = sourced.createRevision 'User', userId
-
-    adapter.storeRevision revision, (error) ->
-      throw error if error?
-
-Finding revisions
---------------------------------------------------------------------------------
-The adapter finds revisions by the resource `type` and `id`.
-
-    adapter.findRevisions 'User', userId, (error, revisions) ->
-      throw error if error?
-      assert.equal 3, revisions.length
+[connection string format]: http://mongodb.github.io/node-mongodb-native/driver-articles/mongoclient.html#the-url-connection-format
 
 [boco-sourced]: http://github.com/bocodigitalmedia/boco-sourced
 [node]: http://nodejs.org
 [npm]: http://npmjs.org
 [mongodb]: http://mongodb.com
+[when]: http://github.com/cujojs/when

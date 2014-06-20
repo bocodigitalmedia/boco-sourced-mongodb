@@ -2,7 +2,9 @@ ChildProcess = require 'child_process'
 async = require 'async'
 
 logger = console
-COFFEE_PATH = "./node_modules/.bin/coffee"
+BIN_PATH = "./node_modules/.bin"
+COFFEE_PATH = "#{BIN_PATH}/coffee"
+MOCHA_PATH = "#{BIN_PATH}/mocha"
 MODULE_NAME = require("./package.json").name
 
 exec = (command, done) ->
@@ -12,8 +14,7 @@ exec = (command, done) ->
   proc.stdout.pipe process.stdout
   proc.stderr.pipe process.stderr
 
-  proc.on "error", (error) ->
-    done error
+  proc.on "error", (error) -> done error
 
   proc.on "exit", (code) ->
     if code is 0 then done() else
@@ -22,10 +23,13 @@ exec = (command, done) ->
 rethrow = (error) ->
   throw error if error?
 
+mocha = (args, done) ->
+  exec "#{MOCHA_PATH} --compilers coffee:coffee-script #{args}", done
+
 coffee = (args, done) ->
   exec "#{COFFEE_PATH} #{args}", done
 
-test = (done) ->
+testDocs = (done) ->
   coffee "--literate README.md", done
 
 compile = (done) ->
@@ -37,5 +41,18 @@ linkToGlobal = (done) ->
 linkLocally = (done) ->
   exec "npm link #{MODULE_NAME}", done
 
-task "test", ->
-  async.series [compile, linkToGlobal, linkLocally, test], rethrow
+link = (done) ->
+  async.series [linkToGlobal, linkLocally], done
+
+runSpecs = (done) ->
+  mocha "spec/ --reporter spec", done
+
+build = (done) -> async.series [compile, link], done
+test = (done) -> async.series [runSpecs, testDocs], done
+docs = (done) -> testDocs done
+spec = (done) -> runSpecs done
+
+task "test", -> test rethrow
+task "build", -> build rethrow
+task "spec", -> spec rethrow
+task "docs", -> docs rethrow

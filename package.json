@@ -23,9 +23,14 @@
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
-    "async": "~0.9.0"
+    "async": "~0.9.0",
+    "when": "~3.2.2",
+    "mongodb": "~1.4.5"
   },
   "peerDependencies": {
     "boco-sourced": "0.x"
+  },
+  "dependencies": {
+    "mongojs": "~0.13.0"
   }
 }
